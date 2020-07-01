@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <!--  <f:view contentType="text/html">-->
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>Dashboard</title>
+                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+            </f:facet>
+        </h:head>
+        
+        <ui:composition template="template/template.xhtml">
+	<ui:define name="title">
+	    <title></title>
+	</ui:define>
+	<ui:define name="content">
+
+        
+           <!-- <h:outputStylesheet name="css/bootstrap.css"/> 
+            <p:layout fullPage="true">-->
+                <p:layoutUnit  position="center" resizable="true" size="100" minSize="40" maxSize="200">
+                    <div class="container">
+                        <div class="col-md-8" style=" margin: 0 150px;border: 2px solid black;
+                             border-radius: 5px;padding:20px 10px;" >
+                            <h1>Student's Information</h1>
+                            <hr style="height:2px;border-width:0;color:gray;background-color:gray"/>
+                            <h3>#Class #{viewStudent.classgrade}</h3>
+                            <h:outputLabel value="Student's Name:  #{viewStudent.name}"/>
+                            <br/>
+                            <h:outputLabel value="Student's ID:  #{viewStudent.studentid}"/>
+                            <br/>
+                            <h:outputLabel value="Sex  #{viewStudent.sex}"/>
+                            <br/>
+                            <h:outputLabel value="Contact No:  #{viewStudent.contact}"/>
+                            <br/>
+                            <h:outputLabel value="Student's Name:  #{viewStudent.name}"/>
+                            
+                            <h:form>
+                            <p:dataTable id="addtable" var="addrs" value="#{addlist}" rowIndexVar="index" >
+                                <f:facet name="header">
+                                    Students Address
+                                </f:facet>
+                                <p:column headerText="#SN">
+                                    <h:outputText value="#Address #{index + 1}" />
+                                </p:column>
+                                <p:column headerText="Addresses">
+                                    <h:outputText value="#{addrs.address}" />
+                                </p:column>
+                                <p:column style="width:320px;" headerText="Action">
+                                    <p:commandButton style="float: right" value="Edit" action="#{handler.editAddress(addrs)}"/>
+                                    <p:commandButton style="float: right" value="Delete" onclick="if(!confirm('Are you sure to delete the #Address #{index + 1}?')) return false" actionListener="#{handler.deleteAddress(addrs)}" id="del" update="addtable"/>
+                                </p:column>
+                            </p:dataTable>
+                             
+                            <br/><br/>
+                            
+                            <p:dataTable id="subtable" var="sub" value="#{sublist}" rowIndexVar="index" >
+                                <f:facet name="header">
+                                    Subjects Enrolled
+                                </f:facet>
+                                <p:column headerText="#SN">
+                                    <h:outputText value="#{index + 1}" />
+                                </p:column>
+                                <p:column headerText="Subjects">
+                                    <h:outputText value="#{sub.subject}" />
+                                </p:column>
+                                <p:column style="width:320px;" headerText="Action">
+                                    <p:commandButton style="float: right" value="Skip" onclick="if(!confirm('Are you sure to delete the subject:${sub.subject}?')) return false" actionListener="#{handler.skipSubject(sub)}" id="skip" update="subtable"/>
+                                </p:column>
+                            </p:dataTable>
+                             </h:form>
+                            <h3><a href='index1.xhtml?faces-redirect=true'>Go Back To Home</a></h3>
+                        </div>
+                    </div>
+
+                </p:layoutUnit>
+            
+        
+        </ui:define>
+	
+</ui:composition>
+
+</html>

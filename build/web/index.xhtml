@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>LOGIN</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </h:head>
+    <h:body class="container " style="background: #e5e5e5">
+        <h:outputStylesheet name="css/bootstrap.css"/>
+        <h:form>  
+            <p:growl id="msg" showDetail="true" life="4000" />
+            <p:panel id="loginPnl" header="Login"
+                     style="width: 450px; margin: 100px auto;background-color:whitesmoke;
+                     font-weight: bolder">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Username" />
+                    <p:inputText id="username" value="#{userAuth.username}"></p:inputText>
+                    <p:spacer /><p:spacer />	
+                    <h:outputText value="Password" />
+                    <p:password id="password" value="#{userAuth.password}"
+                                feedback="false"></p:password>
+                    <p:message for="password"></p:message>
+                </h:panelGrid>
+
+                <h:panelGrid columns="1" cellpadding="10" width="100%">
+                    <p:commandButton  action="#{userAuth.login}"
+                                      value="Login"   style="float: right;">
+                    </p:commandButton>
+                </h:panelGrid>
+            </p:panel>
+
+
+        </h:form>
+    </h:body>
+</html>

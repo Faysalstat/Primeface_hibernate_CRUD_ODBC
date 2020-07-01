@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>Update</title>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        </f:facet>
+
+    </h:head>
+    <h:body>
+            <h:outputStylesheet name="css/bootstrap.css"/>
+            <p:layout fullPage="true">
+                <p:layoutUnit  position="north" size="100" resizable="true" closable="true" collapsible="true">
+                    <nav style="background-color:#597cf0; padding:15px 10px ; margin: 0;font-weight: bolder"  class="navbar navbar-primary">
+                        <div class="container-fluid" style="margin: 0 auto;width: 80%">
+                            <div class="navbar-header">
+                                <a class="navbar-brand">Student Management</a>
+                            </div>
+                            <ul class="nav navbar-nav">
+                                <li class="active"><a href="home.xhtml">Home</a></li>
+                                <li><a href="addstudent.xhtml">Add</a></li>
+                            </ul>
+                        </div>
+                    </nav>
+
+                </p:layoutUnit>
+
+
+            <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                <div style="text-align:center;background-color:#597cf0; padding:15px 10px ; 
+                     margin: 0;font-weight: bolder; font-size: 1em;color: black">
+                    <h3>This is Footer</h3>
+                </div>
+            </p:layoutUnit>
+
+
+            <p:layoutUnit  position="center" resizable="true" size="100" minSize="40" maxSize="200">
+                <div class="bg-primary" style="margin: 0 auto;width: 50%;padding: 20px;color:black;font-weight: bolder;">
+                    <div>
+                        <h1>Add Student's Information</h1>
+                    </div>
+                    <h:form>
+                        <div class="ui-fluid p-formgrid p-grid">
+                            <div class="form-group">
+                                <p:outputLabel  value="Student's Id: ${editStudent.studentid}" />
+                            </div>
+<!--                            <div class="form-group">
+                                <p:inputText class="col-md-12"  value="$ {editStudent.id}"  />
+                            </div>-->
+                            <div class="form-group">
+                                <p:outputLabel  value="Student's Name:" />
+                            </div>
+                            <div class="form-group">
+                                <p:inputText class="col-md-12"  value="${editStudent.name}" />
+                            </div>
+                            <div class="form-group">
+                                <p:outputLabel  value="Class:"  />
+                            </div>
+                            <div class="form-group">
+                                <p:inputText class="col-md-12"  value="${editStudent.classgrade}"  />
+                            </div>
+                            <div class="form-group">
+                                <p:outputLabel  value="Contact"  />
+                            </div>
+                            <div class="form-group">
+                                <p:inputText class="col-md-12"  value="${editStudent.contact}"  />
+                            </div>
+                            <h:panelGrid columns="2" style="margin-top:10px" cellpadding="5">
+                                <div class="form-group">
+                                    <p:outputLabel value="Select Sex:" />
+                                </div>
+
+                                <p:selectOneRadio  value="#{editStudent.sex}" >
+
+                                    <f:selectItem  itemLabel="Male" itemValue="Male  " />
+
+
+                                    <f:selectItem itemLabel="Female" itemValue="Female  " />
+
+
+                                    <f:selectItem itemLabel="Others" itemValue="others  " />
+
+                                </p:selectOneRadio>
+                            </h:panelGrid>
+                            <h:panelGrid columns="1" cellpadding="10" width="100%">
+                                <p:commandButton id="loginButton" action="#{handler.update(editStudent)}"
+                                                 value="Submit"   
+                                                 style="float: left;
+                                                 background-color:#f52525;
+                                                 padding:2px 5px;
+                                                 color: white;
+
+                                                 ">
+                                </p:commandButton>
+                            </h:panelGrid>
+                        </div>
+                    </h:form>
+                </div>
+
+            </p:layoutUnit>
+        </p:layout>
+    </h:body>
+</html>

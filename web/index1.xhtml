@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Conpatible" />
+        <h:outputStylesheet library="css" name="bootstrap.min.css" />     
+        <title>JSF CRUD Example</title>
+
+        <style type="text/css">
+            .tableUpdated {
+                width: 90% !important;
+                margin: 17px 58px 0 !important;
+            }
+            .btnSpace {
+                margin: 17px;
+            }     
+        </style>
+
+    </h:head>
+
+
+    <ui:composition template="template/template.xhtml">
+        <ui:define name="title">
+            <title></title>
+
+
+
+        </ui:define>
+
+
+        <ui:define name="content">
+
+            <h:form class="navbar-form navbar-left">
+                <div class="form-group">
+                    <p:inputText type="text" class="form-control" placeholder="Search" value="#{handler.searchItem}"></p:inputText>
+                </div>   </h:form>
+            <p:commandButton id="serchbyid" style="margin-left:5px" class="btn btn-default" value="Search by Id" actionListener="#{handler.searchItem('id')}" update="ptable" />
+            <p:commandButton style="margin-left:5px" class="btn btn-default" value="Search by Name" actionListener="#{handler.searchItem('name')}" update="ptable" />
+            <br/><br/>
+            <center><h2><h:outputText value="Student Records"/></h2></center>
+            <p:layoutUnit position="center">
+                <p:dataTable id="ptable" var="stu" value="#{handler.list}" binding="#{table}" class="table table-striped table-hover table-bordered tableUpdated">
+                    <p:column headerText="#">
+                        <h:outputText value="#{table.rowIndex + 1}" />
+                    </p:column>
+
+                    <p:column headerText="Id">
+                        <h:outputText value="#{stu.studentid}" />
+                    </p:column>
+                    <p:column headerText="Name">
+                        <h:outputText value="#{stu.name}" />
+                    </p:column>
+                    <p:column headerText="Class">
+                        <h:outputText value="#{stu.classgrade}" />
+                    </p:column>
+                    <p:column headerText="Sex">
+                        <h:outputText value="#{stu.sex}" />
+                    </p:column>
+                    <p:column headerText="Phone">
+                        <h:outputText value="#{stu.contact}" />
+                    </p:column>
+                    <p:column style="width:320px;" headerText="Action">
+                        <p:commandButton value="Update" action="#{handler.edit(stu)}" class="btn btn-primary"/>
+                        <p:commandButton value="Delete" actionListener="#{handler.deletedata(stu)}" class="btn btn-danger"
+                                         id="delete" update="ptable"/>
+                        <p:commandButton value="Details" action="#{handler.viewDetails(stu)}" class="btn btn-primary"/>
+                    </p:column>
+                </p:dataTable>
+            </p:layoutUnit><br/>
+
+            <center>
+                <p:commandButton action="createStudent.xhtml?faces-redirect=true" value="Create New User" class="btn btn-success btnSpace" />
+            </center>
+
+
+
+
+        </ui:define>
+
+    </ui:composition>
+</html>
